@@ -1,7 +1,7 @@
 # springboot-sample-application
 ## 개발환경 구성
-#### Single Zookeeper, Single Kafka Cluster
-- SpringBoot : 2.6.0
+### Spring Boot
+- Spring Boot : 2.6.0
     
 ## 테스트 방법
 
