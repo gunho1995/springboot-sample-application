@@ -7,3 +7,4 @@ spring:
   profiles: dev
 server:
   port: 30001
+vue:
