@@ -7,4 +7,11 @@ spring:
   profiles: dev
 server:
   port: 30001
-vue:
+kafka:
+  -
+    clusters:
+      name: bigdata
+      clusterId: abcde
+      boostrapServer:
+        - localhost:9092
+
