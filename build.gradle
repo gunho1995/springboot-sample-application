@@ -16,7 +16,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
+    implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.2.1'
+
     implementation('org.springframework.boot:spring-boot-starter-web')
+
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
 }
 
 test {

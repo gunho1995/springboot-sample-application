@@ -10,7 +10,7 @@ server:
 kafka:
   -
     clusters:
-      name: bigdata
+      name: crispy
       clusterId: abcde
       boostrapServer:
         - localhost:9092
