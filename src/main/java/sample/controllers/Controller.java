@@ -1,33 +1,21 @@
 package sample.controllers;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import sample.services.KafkaService;
 
 @RestController
-@RequestMapping("/crispy/app")
+@RequestMapping("/kafka/clusters")
+@AllArgsConstructor
 public class Controller {
-    @GetMapping("/foo")
-    public String foo(){
-        return "hello world";
-    }
-
-    @GetMapping("/users/{userId}")
-    public String getUser(@PathVariable String userId) {
-        return userId;
-    }
-
-    @PostMapping("/users/create")
-    public String createUser(@RequestParam String userId){
-        return userId + " created";
-    }
-
-    @PutMapping("/users/{userId}")
-    public String alterUserProfile(@PathVariable String userId,
-                                   @RequestParam String profile){
-        return userId + " profile" + profile + " changed";
-    }
-
-    @DeleteMapping("/users/{userId}")
-    public String deleteUser(@PathVariable String userId){
-        return userId + " deleted";
+    @ApiOperation(value = "카프카 토픽 생성")
+    @PostMapping("/{clusterId}/topics")
+    public void createTopic(@PathVariable String clusterId,
+                              @RequestParam String topicName,@RequestParam int numPartitions,
+                              @RequestParam short replicationFactor){
+        kafkaService.createTopic(topicName, numPartitions, replicationFactor);
     }
 }

@@ -12,6 +12,6 @@ kafka:
     clusters:
       name: crispy
       clusterId: abcde
-      boostrapServer:
+      boostrapServers:
         - localhost:9092
 
