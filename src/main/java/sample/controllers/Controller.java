@@ -16,6 +16,6 @@ public class Controller {
     public void createTopic(@PathVariable String clusterId,
                               @RequestParam String topicName,@RequestParam int numPartitions,
                               @RequestParam short replicationFactor){
-        kafkaService.createTopic(topicName, numPartitions, replicationFactor);
+        //kafkaService.createTopic(topicName, numPartitions, replicationFactor);
     }
 }

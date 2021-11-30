@@ -5,9 +5,11 @@ import org.apache.kafka.clients.admin.CreateTopicsResult;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.admin.TopicDescription;
 import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.common.config.ConfigResource;
+import org.apache.kafka.common.config.TopicConfig;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -22,19 +24,32 @@ public class KafkaService {
             createTopicsResult.all().get();
         }
 
-        public void listTopic(){
+        public void listTopic() throws ExecutionException, InterruptedException {
+            ListTopicsResult listTopicsResult = adminClient.listTopics();
+            listTopicsResult.listings().get();
         }
 
-        public void describeTopic(){
-
+        public void describeTopic() throws ExecutionException, InterruptedException {
+            DescribeTopicsResult describeTopicsResult = adminClient.describeTopics(Collections.singleton("crispy"));
+            describeTopicsResult.all().get();
         }
 
         public void describeConfigs(){
-
+            ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, "crispy");            configs.put(ConfigResource.Type.TOPIC, "crispy");
+            DescribeConfigsResult describeConfigsResult = adminClient.describeConfigs(
+                    Collections.singleton(configResource));
         }
 
-        public void alterConfigs(){
+        public void alterConfigs() throws ExecutionException, InterruptedException {
+            ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, "crispy");
+            List<ConfigEntry> configEntries = new ArrayList<>();
+            Config config = new Config(configEntries);
 
+            Map<ConfigResource, Config> configuration = new HashMap<>();
+            AlterConfigsResult alterConfigsResult = adminClient.alterConfigs(
+                    Collections.singletonMap(configResource, config)
+            );
+            alterConfigsResult.all().get();
         }
 
 }
