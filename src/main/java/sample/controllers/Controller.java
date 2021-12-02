@@ -32,6 +32,18 @@ public class Controller {
     @ApiOperation(value = "카프카 토픽 조회")
     @GetMapping("/{clusterId}/topics/{topicName}")
     public void describeTopic(){
-        
+
+    }
+
+    @ApiOperation(value = "토픽 설정 조회")
+    @GetMapping("/{clusterId}/topics/{topicName}")
+    public void alterConfigs(){
+
+    }
+
+    @ApiOperation(value = "토픽 삭제")
+    @DeleteMapping("/{clusterId}/topics/{topicName}")
+    public void deleteTopic(@PathVariable String clusterId, @PathVariable String topicName) {
+        kafkaService.deleteTopic();
     }
 }

@@ -7,6 +7,7 @@ import org.apache.kafka.clients.admin.TopicDescription;
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.common.config.ConfigResource;
 import org.apache.kafka.common.config.TopicConfig;
+import org.apache.kafka.common.requests.DeleteTopicsRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -35,7 +36,7 @@ public class KafkaService {
         }
 
         public void describeConfigs(){
-            ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, "crispy");            configs.put(ConfigResource.Type.TOPIC, "crispy");
+            ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, "crispy");
             DescribeConfigsResult describeConfigsResult = adminClient.describeConfigs(
                     Collections.singleton(configResource));
         }
@@ -50,6 +51,10 @@ public class KafkaService {
                     Collections.singletonMap(configResource, config)
             );
             alterConfigsResult.all().get();
+        }
+
+        public void deleteTopic(){
+            adminClient.deleteTopics(Collections.singleton("crispy"));
         }
 
 }
