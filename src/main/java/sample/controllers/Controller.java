@@ -1,5 +1,6 @@
 package sample.controllers;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -46,4 +47,11 @@ public class Controller {
     public void deleteTopic(@PathVariable String clusterId, @PathVariable String topicName) {
         kafkaService.deleteTopic();
     }
+
+    @ApiOperation(value = "단일 토픽 조회")
+    @GetMapping("/{clusterId}/topics/{topicName}/configs")
+    public void getKafkaTopic(@PathVariable String clusterId, @PathVariable String topicName){
+        kafkaService.describeConfigs();
+    }
+
 }
