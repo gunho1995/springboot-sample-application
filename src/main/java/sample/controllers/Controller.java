@@ -32,14 +32,15 @@ public class Controller {
 
     @ApiOperation(value = "카프카 토픽 조회")
     @GetMapping("/{clusterId}/topics/{topicName}")
-    public void describeTopic(){
+    public void describeTopic() throws ExecutionException, InterruptedException {
+        kafkaService.describeTopic();
 
     }
 
     @ApiOperation(value = "토픽 설정 조회")
     @GetMapping("/{clusterId}/topics/{topicName}")
-    public void alterConfigs(){
-
+    public void alterConfigs() throws ExecutionException, InterruptedException {
+        kafkaService.alterConfigs();
     }
 
     @ApiOperation(value = "토픽 삭제")
