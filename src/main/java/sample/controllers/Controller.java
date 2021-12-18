@@ -34,7 +34,6 @@ public class Controller {
     @GetMapping("/{clusterId}/topics/{topicName}")
     public void describeTopic() throws ExecutionException, InterruptedException {
         kafkaService.describeTopic();
-
     }
 
     @ApiOperation(value = "토픽 설정 조회")
@@ -54,5 +53,6 @@ public class Controller {
     public void getKafkaTopic(@PathVariable String clusterId, @PathVariable String topicName){
         kafkaService.describeConfigs();
     }
+
 
 }
